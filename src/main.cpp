@@ -4,6 +4,9 @@
 
 //#include "render/render.h"
 #include "highway.h"
+#include <fstream>
+#include <iostream>
+using namespace std;
 
 int main(int argc, char** argv)
 {
@@ -26,6 +29,8 @@ int main(int argc, char** argv)
 	int time_us = 0;
 
 	double egoVelocity = 25;
+	ofstream myFile;
+	myFile.open("output.txt");
 
 	while (frame_count < (frame_per_sec*sec_interval))
 	{
@@ -37,7 +42,14 @@ int main(int argc, char** argv)
 		viewer->spinOnce(1000/frame_per_sec);
 		frame_count++;
 		time_us = 1000000*frame_count/frame_per_sec;
-		
+
+		// save summary data
+		myFile << frame_count << ",";
+		for (auto it=highway.traffic.begin();it!=highway.traffic.end();++it){
+			myFile << it->ukf.nis_ << ",";
+		}
+		myFile << endl;
 	}
+	myFile.close();
 
 }
