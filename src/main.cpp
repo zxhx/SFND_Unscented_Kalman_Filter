@@ -37,7 +37,7 @@ int main(int argc, char** argv)
 		viewer->removeAllPointClouds();
 		viewer->removeAllShapes();
 
-		//stepHighway(egoVelocity,time_us, frame_per_sec, viewer);
+		//stepHighway
 		highway.stepHighway(egoVelocity,time_us, frame_per_sec, viewer);
 		viewer->spinOnce(1000/frame_per_sec);
 		frame_count++;
