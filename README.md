@@ -96,8 +96,8 @@ As shown below, RMSE remains less than [0.30, 0.16, 0.95, 0.70] for the program.
 
 * Plot for NIS values of Radar:
 
-  ![NIS_Radar_graph](src\NIS_Radar.png)
+  ![NIS_Radar_graph](src/NIS_Radar.png)
 
 * Plot for NIS values of Lidar:
 
-  ![NIS_Lidar_graph](src\NIS_Lidar.png)
+  ![NIS_Lidar_graph](src/NIS_Lidar.png)
