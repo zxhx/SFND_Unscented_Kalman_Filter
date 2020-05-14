@@ -1,4 +1,5 @@
 # SFND_Unscented_Kalman_Filter
+
 Sensor Fusion UKF Highway Project Starter Code
 
 <img src="media/ukf_highway_tracked.gif" width="700" height="400" />
@@ -29,6 +30,7 @@ The red spheres above cars represent the (x,y) lidar detection and the purple li
 ---
 
 ## Other Important Dependencies
+
 * cmake >= 3.5
   * All OSes: [click here for installation instructions](https://cmake.org/install/)
 * make >= 4.1 (Linux, Mac), 3.81 (Windows)
@@ -59,7 +61,7 @@ using the following settings:
 
 ## Code Style
 
-Please stick to [Google's C++ style guide](https://google.github.io/styleguide/cppguide.html) as much as possible.
+As  [Google's C++ style guide](https://google.github.io/styleguide/cppguide.html) rule defined.
 
 ## Generating Additional Data
 
@@ -72,5 +74,30 @@ and performing clustering. This is similar to what was done in Sensor Fusion Lid
 ## Project Instructions and Rubric
 
 This information is only accessible by people who are already enrolled in Sensor Fusion. 
-If you are enrolled, see the project page in the classroom
-for instructions and the project rubric.
+
+## NIS for Radar and Lidar
+
+* NIS value calculation:
+
+  Various combinations of process noise values have been tested in this project and finally the results are:
+
+  // Process noise standard deviation longitudinal acceleration in m/s^2
+  std_a_ = 1.5;
+  // Process noise standard deviation yaw acceleration in rad/s^2
+  std_yawdd_ = 2.46;
+
+* Calculate NIS for both Lidar and Radar to check the consistency of the designed Unscented Kalman filter.
+
+  
+
+## Performance Summary
+
+As shown below, RMSE remains less than [0.30, 0.16, 0.95, 0.70] for the program. In addition, the normalized innovation squares are calculated for both Lidar and Radar, and compared to the chi squared 95% cut-off for 2 and 3 df respectively. Parameters chosen here are standard deviation of acceleration of 3 m/s2, and standard deviation of yaw derivative of 1 radians/s2. Analysis file can be seen in 'src\summary.ipynb'. Plot results are as below:
+
+* Plot for NIS values of Radar:
+
+  ![NIS_Radar_graph](src\NIS_Radar.png)
+
+* Plot for NIS values of Lidar:
+
+  ![NIS_Lidar_graph](src\NIS_Lidar.png)
