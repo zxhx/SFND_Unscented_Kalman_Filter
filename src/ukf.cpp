@@ -72,7 +72,7 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
           0,
           0;
 
-    // guesstimate these by checking, assume some correlation between turning radius and its acceleration
+    // guesstimate by checking, assume some correlation between turning radius and its acceleration
     P_ <<  0.25, 0.0, 0.0, 0.0, 0.0,
            0.0, 0.25, 0.0, 0.0, 0.0,
            0.0, 0.0, 0.25, 0.0, 0.0,
@@ -91,7 +91,7 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
           0,
           0;
 
-    // guesstimate these by checking, assume some correlation between turning radius and its acceleration
+    // guesstimate by checking, assume some correlation between turning radius and its acceleration
     P_ <<  0.25, 0.0, 0.0, 0.0, 0.0,
            0.0, 0.25, 0.0, 0.0, 0.0,
            0.0, 0.0, 0.25, 0.0, 0.0,
@@ -131,7 +131,7 @@ void UKF::Prediction(double delta_t) {
   P_aug(n_x_,n_x_) = std_a_*std_a_;
   P_aug(n_x_+1,n_x_+1) = std_yawdd_*std_yawdd_;
 
-  // create A matrix
+  // create matrix： A
   MatrixXd A = P_aug.llt().matrixL();
   A = A*sqrt(lambda_ + n_x_ + 2);
 
@@ -145,7 +145,6 @@ void UKF::Prediction(double delta_t) {
   }
 
   // create matrix with predicted sigma points as columns
-
   for (int i = 0; i < 2 * n_aug_ + 1; i++) {
       VectorXd x = Xsig_aug.col(i);
       if (abs(x(4)) < 0.00001) {
@@ -189,7 +188,7 @@ void UKF::Prediction(double delta_t) {
 
 void UKF::UpdateLidar(MeasurementPackage meas_package) {
 
-  // map prediction to measurement space using standard (linear) Kalman filter
+  // map prediction to measure space using standard (linear) Kalman filter
   VectorXd z_laser = H_ * x_;
   VectorXd y = meas_package.raw_measurements_ - z_laser;
   MatrixXd S_laser = H_ * P_ * Ht_ + R_laser_;
